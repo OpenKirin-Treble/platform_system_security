@@ -707,7 +707,7 @@ KeyStoreServiceReturnCode KeyStoreService::generateKey(const String16& name,
     }
 
     if (containsTag(params, Tag::INCLUDE_UNIQUE_ID)) {
-        if (!checkBinderPermission(P_GEN_UNIQUE_ID) &&
+        if (!checkBinderPermission(P_GEN_UNIQUE_ID) ||
               originalUid != IPCThreadState::self()->getCallingUid()) {
             return ResponseCode::PERMISSION_DENIED;
         }
